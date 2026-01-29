@@ -1,0 +1,28 @@
+.dashboard {
+  min-height: 100vh;
+  background: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 30px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h1 {
+  margin-bottom: 5px;
+}
+
+.role {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.dashboard-card ul {
+  padding-left: 20px;
+}
