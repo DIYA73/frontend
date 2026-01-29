@@ -4,8 +4,7 @@
 const toggleBtn = document.getElementById("theme-toggle");
 const body = document.body;
 
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "light") {
+if (localStorage.getItem("theme") === "light") {
   body.classList.add("light");
   toggleBtn.textContent = "☀️";
 }
@@ -18,78 +17,51 @@ toggleBtn.addEventListener("click", () => {
 });
 
 /* ======================
-   CURSOR GLOW FOLLOW
+   CURSOR GLOW
 ====================== */
 const glow = document.querySelector(".cursor-glow");
-let mouseX = 0, mouseY = 0;
-let currentX = 0, currentY = 0;
+let x = 0, y = 0, mx = 0, my = 0;
 
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
+document.addEventListener("mousemove", e => {
+  mx = e.clientX;
+  my = e.clientY;
 });
 
 function animateGlow() {
-  currentX += (mouseX - currentX) * 0.12;
-  currentY += (mouseY - currentY) * 0.12;
-  glow.style.left = currentX + "px";
-  glow.style.top = currentY + "px";
+  x += (mx - x) * 0.1;
+  y += (my - y) * 0.1;
+  glow.style.left = x + "px";
+  glow.style.top = y + "px";
   requestAnimationFrame(animateGlow);
 }
 animateGlow();
 
 /* ======================
-   SKILL PROGRESS (SCROLL)
+   SKILL PROGRESS
 ====================== */
-const skillBars = document.querySelectorAll(".progress-bar");
-
-const skillObserver = new IntersectionObserver(
-  (entries) => {
+document.querySelectorAll(".progress-bar").forEach(bar => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const value = entry.target.dataset.progress;
-        entry.target.style.width = value + "%";
+        bar.style.width = bar.dataset.progress + "%";
       }
     });
-  },
-  { threshold: 0.5 }
-);
+  }, { threshold: 0.5 });
 
-skillBars.forEach(bar => skillObserver.observe(bar));
+  observer.observe(bar);
+});
 
 /* ======================
-   TIMELINE ANIMATION
+   TIMELINE
 ====================== */
-const timelineItems = document.querySelectorAll(".timeline-item");
-
-const timelineObserver = new IntersectionObserver(
-  (entries) => {
+document.querySelectorAll(".timeline-item").forEach(item => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        item.classList.add("show");
       }
     });
-  },
-  { threshold: 0.4 }
-);
+  }, { threshold: 0.4 });
 
-timelineItems.forEach(item => timelineObserver.observe(item));
-
-/* ======================
-   SECTION FADE-IN
-====================== */
-const sections = document.querySelectorAll(".section");
-
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
-
-sections.forEach(sec => sectionObserver.observe(sec));
+  observer.observe(item);
+});
