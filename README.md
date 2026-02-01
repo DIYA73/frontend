@@ -4,7 +4,7 @@ A modern full-stack personal portfolio with authentication and a protected dashb
 
 ---
 
-## ✨ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - React
@@ -19,7 +19,7 @@ A modern full-stack personal portfolio with authentication and a protected dashb
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Backend
 
@@ -27,3 +27,4 @@ A modern full-stack personal portfolio with authentication and a protected dashb
 cd backend
 npm install
 npm run dev
+
